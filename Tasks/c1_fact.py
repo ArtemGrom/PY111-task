@@ -7,6 +7,7 @@ def factorial_recursive(n: int) -> int:
     if n < 0:
         raise ValueError
 
+
     if n == 1:
         return n
     else:
