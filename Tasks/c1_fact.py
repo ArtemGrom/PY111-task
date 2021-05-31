@@ -26,11 +26,10 @@ def factorial_iterative(n: int) -> int:
         raise ValueError
 
     n1 = 1
-    for i in range(n):
-        n = n1 *
-
-        print()
-    return n
+    while n > 1:
+        n1 = n1 * n
+        n -= 1
+    return n1
 
 
 def main():
