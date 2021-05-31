@@ -3,11 +3,6 @@ Priority Queue
 
 Queue priorities are from 0 to 10
 """
-from typing import Any
-from collections import defaultdict
-
-_queue = {i: [] for i in range(11)}
-
 
 def enqueue(elem: Any, priority: int = 0) -> None:
     """
@@ -16,17 +11,6 @@ def enqueue(elem: Any, priority: int = 0) -> None:
     :param elem: element to be added
     :return: Nothing
     """
-
-
-
-if __name__ == '__main__':
-    enqueue("a", 4)
-    print(_priority_queue)
-    enqueue("a", 5)
-    print(_priority_queue)
-    enqueue("a", 1)
-    print(_priority_queue)
-
 
 def dequeue() -> Any:
     """
@@ -53,4 +37,3 @@ def clear() -> None:
 
     :return: None
     """
-    _priority_queue.clear()
