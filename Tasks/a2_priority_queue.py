@@ -15,9 +15,8 @@ def enqueue(elem: Any, priority: int = 0) -> None:
     :param elem: element to be added
     :return: Nothing
     """
-    _priority_queue.setdefault(priority, elem)
-    _priority_queue[priority].append(elem)
-    return None
+    if priority in _priority_queue:
+        _priority_queue[priority].append(elem)
 
 
 def dequeue() -> Any:
@@ -26,7 +25,9 @@ def dequeue() -> Any:
 
     :return: dequeued element
     """
-    return None
+    for priority in _priority_queue:
+        if len(_priority_queue[priority]) > 0:
+            return _priority_queue[priority].pop(0)
 
 
 def peek(ind: int = 0, priority: int = 0) -> Any:
@@ -36,7 +37,8 @@ def peek(ind: int = 0, priority: int = 0) -> Any:
     :param ind: index of element (count from the beginning)
     :return: peeked element
     """
-    return None
+    if len(_priority_queue[priority]) > ind:
+        return _priority_queue[priority][ind]
 
 
 def clear() -> None:
@@ -45,7 +47,8 @@ def clear() -> None:
 
     :return: None
     """
-    _priority_queue.clear()
+    for priority in _priority_queue:
+        _priority_queue[priority].clear()
 
 
 if __name__ == '__main__':
@@ -56,5 +59,5 @@ if __name__ == '__main__':
     print(_priority_queue)
     enqueue("b", 4)
     print(_priority_queue)
-    # enqueue("a", 1)
-    # print(_priority_queue)
+    enqueue("a", 1)
+    print(_priority_queue)
