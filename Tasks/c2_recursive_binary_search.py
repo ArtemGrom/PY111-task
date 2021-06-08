@@ -12,7 +12,7 @@ def binary_search(elem: int, arr: Sequence, low=0, high=None) -> Optional[int]:
     if high is None:
         high = len(arr) - 1
     if low > high:
-        return False
+        return None
     mid = (high + low) // 2
     if arr[mid] == elem:
         while mid > 0 and arr[mid - 1] == elem:
@@ -26,7 +26,7 @@ def binary_search(elem: int, arr: Sequence, low=0, high=None) -> Optional[int]:
 
 def main():
     elem = 98
-    arr = [4, 8, 17, 45, 69, 98, 122, 185]
+    arr = [190, 8, 17, 45, 69, 98, 122, 185]
     print(binary_search(elem, arr, 0, len(arr)-1))
 
 
