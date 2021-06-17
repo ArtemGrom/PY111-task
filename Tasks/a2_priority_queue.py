@@ -60,4 +60,3 @@ if __name__ == '__main__':
     enqueue("b", 4)
     print(_priority_queue)
     enqueue("a", 1)
-    print(_priority_queue)
