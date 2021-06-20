@@ -2,7 +2,6 @@
 Taylor series
 """
 from typing import Union
-import math
 
 
 def ex(x: Union[int, float]) -> float:
@@ -14,7 +13,9 @@ def ex(x: Union[int, float]) -> float:
     """
     e = 0
     for i in range(0, 100):
-        e = e + (x ** i) / math.factorial(i)
+        a = x ** i
+        b = factorial_iterative(i)
+        e += a / b
     return e
 
 
@@ -28,8 +29,26 @@ def sinx(x: Union[int, float]) -> float:
     sin_x = 0
     for i in range(0, 10):
         const = (-1) ** i
-        sin_x = sin_x + ((x ** (2 * i + 1))/math.factorial(2 * i + 1)) * const
+        sin_x += ((x ** (2 * i + 1))/factorial_iterative(2 * i + 1)) * const
     return sin_x
+
+
+def factorial_iterative(n: int) -> int:
+    """
+    Calculate factorial of number n (> 0) in iterative way
+
+    :param n: int > 0
+    :return: factorial of n
+    """
+    if n < 0:
+        raise ValueError
+
+    n1 = 1
+    while n > 1:
+        n1 = n1 * n
+        n -= 1
+
+    return n1
 
 
 def main():
