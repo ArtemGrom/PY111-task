@@ -11,14 +11,14 @@ def ex(x: Union[int, float]) -> float:
     :param x: x value
     :return: e^x value
     """
-    e = 0
+    e = 1
     a = x ** 1
     b = factorial_iterative(1)
     for i in range(2, 100):
         e += a / b
         a *= x
         b *= i
-    return e + 1
+    return e
 
 
 def sinx(x: Union[int, float]) -> float:
@@ -28,10 +28,14 @@ def sinx(x: Union[int, float]) -> float:
     :param x: x value
     :return: sin(x) value
     """
-    sin_x = 0
-    for i in range(0, 10):
-        const = (-1) ** i
-        sin_x += ((x ** (2 * i + 1))/factorial_iterative(2 * i + 1)) * const
+    sin_x = x
+    a = x ** 3
+    b = factorial_iterative(3)
+    for i in range(2, 10):
+        const = (-1) ** (i - 1)
+        sin_x += (a / b) * const
+        a = x ** (2 * (i + 1) - 1)
+        b = factorial_iterative(2 * (i + 1) - 1)
     return sin_x
 
 
@@ -60,5 +64,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
