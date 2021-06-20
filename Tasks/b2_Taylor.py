@@ -12,11 +12,13 @@ def ex(x: Union[int, float]) -> float:
     :return: e^x value
     """
     e = 0
-    for i in range(0, 100):
-        a = x ** i
-        b = factorial_iterative(i)
+    a = x ** 1
+    b = factorial_iterative(1)
+    for i in range(2, 100):
         e += a / b
-    return e
+        a *= x
+        b *= i
+    return e + 1
 
 
 def sinx(x: Union[int, float]) -> float:
