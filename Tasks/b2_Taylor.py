@@ -34,8 +34,8 @@ def sinx(x: Union[int, float]) -> float:
     for i in range(2, 10):
         const = (-1) ** (i - 1)
         sin_x += (a / b) * const
-        a *= (x * x)
-        b = b * (i * 2) * (i * 2 + 1)
+        a = x ** (2 * (i + 1) - 1)
+        b = factorial_iterative(2 * (i + 1) - 1)
     return sin_x
 
 
