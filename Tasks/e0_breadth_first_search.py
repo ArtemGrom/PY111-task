@@ -3,19 +3,6 @@ from typing import Hashable, List
 
 import networkx as nx
 
-start_node = 'A'
-g = {}
-g[start_node] = ['B', 'F']
-g['B'] = ['G']
-g['F'] = ['G']
-g['G'] = ['C', 'H', 'I']
-g['C'] = ['H']
-g['I'] = ['H']
-g['H'] = ['D', 'E', 'J']
-g['E'] = ['D']
-g['D'] = []
-g['J'] = []
-
 
 def bfs(g: [dict, nx.Graph], start_node: Hashable) -> List[Hashable]:
     """
@@ -37,6 +24,19 @@ def bfs(g: [dict, nx.Graph], start_node: Hashable) -> List[Hashable]:
 
 
 def main():
+    start_node = 'A'
+    g = {}
+    g[start_node] = ['B', 'F']
+    g['B'] = ['G']
+    g['F'] = ['G']
+    g['G'] = ['C', 'H', 'I']
+    g['C'] = ['H']
+    g['I'] = ['H']
+    g['H'] = ['D', 'E', 'J']
+    g['E'] = ['D']
+    g['D'] = []
+    g['J'] = []
+
     print(bfs(g, 'A'))
 
 
