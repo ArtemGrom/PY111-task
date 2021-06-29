@@ -1,3 +1,4 @@
+from random import randint
 from typing import List
 
 
@@ -17,7 +18,10 @@ def sort(container: List[int]) -> List[int]:
 
 
 def main():
-    print(sort([63, 80, 62, 69, 71, 37, 12, 90, 19, 67]))
+    a = []
+    for i in range(10):
+        a.append(randint(1, 99))
+    print(sort(a))
 
 
 if __name__ == '__main__':
