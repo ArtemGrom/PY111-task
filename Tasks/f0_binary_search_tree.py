@@ -55,40 +55,60 @@ def remove(key: int) -> Optional[Tuple[int, Any]]:
     current_node = root
     prev_node = None
     while True:
-        if key > current_node["key"]:
+        if key > current_node["key"]:  # идем в правую ветку
             if current_node["right"] is None:
                 return None
             prev_node = current_node["key"]
             current_node = current_node["right"]
-        elif key < current_node["key"]:
+        elif key < current_node["key"]:  # идем в левую ветку
             if current_node["left"] is None:
                 return None
             prev_node = current_node["key"]
             current_node = current_node["left"]
-        else:
-            if current_node["right"] is current_node["left"] is None:
-                if current_node["key"] < prev_node["key"]:
-                    prev_node["left"] = None
-                else:
-                    prev_node["right"] = None
+        else:  # key==current node
+            if prev_node is not None:
+                if current_node["right"] is current_node["left"] is None:
+                    if current_node["key"] < prev_node["key"]:
+                        prev_node["left"] = None
+                    else:
+                        prev_node["right"] = None
 
-            elif current_node["right"] is None or current_node["left"] is None:
-                if current_node["left"] is None:
+                elif current_node["right"] is None or current_node["left"] is None:
+                    if key < prev_node["key"]:
+                        if current_node["left"] is None:
+                            prev_node["left"] = current_node["right"]
+                        else:
+                            prev_node["left"] = current_node["left"]
+                    else:
+                        if current_node["left"] is None:
+                            prev_node["right"] = current_node["right"]
+                        else:
+                            prev_node["right"] = current_node["left"]
+                else:  # если у node есть и потомки и предки
+                    min_node = current_node["key"]
+                    while current_node:
+                        if min_node < key:
+                            min_node = current_node["left"]
+                            prev_node = current_node["key"]
+                            current_node = current_node["left"]
 
-                    prev_node["right"] = current_node["right"]
-                else:
-                    prev_node["left"] = current_node["left"]
-
-            # else:
-            #     min_node = current_node["right"]
-            #
-            #     while current_node:
-
-
-
-
-
-
+            else:  # если удаляемое значение == корень дерева
+                if current_node["right"] is current_node["left"] is None:
+                    return key, current_node["value"]
+                elif current_node["left"] is None:
+                    min_node = current_node["right"]
+                    while current_node:
+                        if min_node["key"] < key:
+                            min_node = current_node["left"]
+                    root = min_node
+                    return root
+                elif current_node["right"] is None:
+                    min_node = current_node["left"]
+                    while current_node:
+                        if min_node["key"] > key:
+                            min_node = current_node["right"]
+                    root = min_node
+                    return root
 
 
 def find(key: int) -> Optional[Any]:
@@ -129,14 +149,14 @@ def clear() -> None:
 def main():
     clear()
     insert(10, 10)
-    # print(root)
+    print(root)
     insert(15, 15)
-    # print(root)
+    print(root)
     insert(5, 5)
-    # print(root)
+    print(root)
     insert(20, 20)
-    # print(root)
-    print(find(5))
+    print(root)
+    # print(find(5))
 
 
 if __name__ == '__main__':
